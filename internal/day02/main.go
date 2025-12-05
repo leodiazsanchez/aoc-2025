@@ -24,12 +24,8 @@ func (s *solve) Part1() string {
 		l, _ := strconv.Atoi(ranges[0])
 		r, _ := strconv.Atoi(ranges[1])
 		for i := l; i <= r; i++ {
-			num := strconv.Itoa(i)
-			if len(num)%2 != 0 {
-				continue
-			}
-			half := len(num) / 2
-			if strings.EqualFold(num[:half], num[half:]) {
+			n := strconv.Itoa(i)
+			if len(n)%2 == 0 && strings.EqualFold(n[:len(n)/2], n[len(n)/2:]) {
 				sum += i
 			}
 		}

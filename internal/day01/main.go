@@ -32,9 +32,7 @@ func (s *solve) Part1() string {
 			steps = -steps
 		}
 
-		pos = ((steps + pos) + 100) % 100
-
-		if pos == 0 {
+		if pos = (pos + steps + 100) % 100; pos == 0 {
 			count++
 		}
 	}
@@ -55,20 +53,14 @@ func (s *solve) Part2() string {
 		dir := line[0]
 		steps, _ := strconv.Atoi(line[1:])
 
-		switch dir {
-		case 'R':
-			for range steps {
-				pos = (pos + 1) % 100
-				if pos == 0 {
-					count++
-				}
-			}
-		case 'L':
-			for range steps {
-				pos = (pos - 1 + 100) % 100
-				if pos == 0 {
-					count++
-				}
+		step := 1
+		if dir == 'L' {
+			step = -1
+		}
+
+		for range steps {
+			if pos = (pos + step + 100) % 100; pos == 0 {
+				count++
 			}
 		}
 	}

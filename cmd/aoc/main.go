@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/leodiazsanchez/aoc-2025/internal"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"strconv"
 )
 
 var dayRegex = regexp.MustCompile(`^\d{1,2}$`)
@@ -20,6 +22,20 @@ func main() {
 
 	if !dayRegex.MatchString(day) {
 		log.Fatalf("invalid day '%s'. Day must be a 1 or 2 digit number.\n", day)
+	}
+
+	if len(os.Args) > 2 && os.Args[2] == "-get" {
+		d, err := strconv.Atoi(day)
+		if err != nil {
+			log.Fatalf("invalid day number: %v", err)
+		}
+
+		if err = internal.GetPuzzleInput(d); err != nil {
+			log.Fatalf("failed to get puzzle input for day %s: %v", day, err)
+		}
+
+		fmt.Printf("Successfully downloaded input for day %s\n", day)
+		return
 	}
 
 	programPath := filepath.Join("internal", fmt.Sprintf("day%02s", day), "main.go")

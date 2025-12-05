@@ -15,6 +15,11 @@ Run a specific day's solution:
 make run day=<day-number>
 ```
 
+Get a specific day's input:
+```bash
+make get day=<day-number>
+```
+
 ## Repository Structure
 
 The repo follows the [Standard Go Project Layout](https://github.com/golang-standards/project-layout).

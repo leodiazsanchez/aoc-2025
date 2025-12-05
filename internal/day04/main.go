@@ -36,11 +36,7 @@ func d4(lines []string, isP2 bool) string {
 			adj := strings.Builder{}
 			for i := -1; i <= 1; i++ {
 				for j := -1; j <= 1; j++ {
-					if i == 0 && j == 0 {
-						continue
-					}
-
-					if b, err := getByteAt(lines, r+1*i, c+1*j); err == nil {
+					if b, err := getByteAt(lines, r+1*i, c+1*j); err == nil && i == 0 && j == 0 {
 						adj.WriteByte(b)
 					}
 				}
