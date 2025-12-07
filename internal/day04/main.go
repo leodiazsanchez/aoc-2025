@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/leodiazsanchez/aoc-2025/internal"
 	"github.com/leodiazsanchez/aoc-2025/pkg/utils"
 	"os"
@@ -36,7 +35,7 @@ func d4(lines []string, isP2 bool) string {
 			adj := strings.Builder{}
 			for i := -1; i <= 1; i++ {
 				for j := -1; j <= 1; j++ {
-					if b, err := getByteAt(lines, r+1*i, c+1*j); err == nil && i == 0 && j == 0 {
+					if b, err := utils.GetMatrixByteAt(lines, r+1*i, c+1*j); err == nil && i == 0 && j == 0 {
 						adj.WriteByte(b)
 					}
 				}
@@ -53,12 +52,4 @@ func d4(lines []string, isP2 bool) string {
 		}
 	}
 	return strconv.Itoa(sum)
-}
-
-func getByteAt(rows []string, r, c int) (byte, error) {
-	rowCount := len(rows)
-	if r >= 0 && r < rowCount && c >= 0 && c < len(rows[r]) {
-		return rows[r][c], nil
-	}
-	return 0, fmt.Errorf("out of bounds")
 }
